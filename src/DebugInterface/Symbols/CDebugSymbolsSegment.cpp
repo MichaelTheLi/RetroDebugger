@@ -437,6 +437,10 @@ void CDebugSymbolsSegment::AddWatch(int address, int numberOfValues, CSlrString 
 		{
 			representation = WATCH_REPRESENTATION_HEX_32_LITTLE_ENDIAN;
 		}
+		else if (strRepresentation->CompareWith("fp16q88"))
+		{
+			representation = WATCH_REPRESENTATION_FP_16_Q88_LITTLE_ENDIAN;
+		}
 		
 		if (strRepresentation->CompareWith("dec")
 			|| strRepresentation->CompareWith("dec8")

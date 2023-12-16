@@ -55,6 +55,7 @@ enum MemoryBreakpointComparison //: unsigned char
 	MEMORY_BREAKPOINT_ARRAY_SIZE
 };
 
+// Note: should be the same order as in representationNames in src/DebugInterface/Symbols/CDebugSymbolsDataWatch.cpp
 enum WatchRepresentation
 {
 	WATCH_REPRESENTATION_HEX_8 = 0,
@@ -72,6 +73,7 @@ enum WatchRepresentation
 	WATCH_REPRESENTATION_SIGNED_DEC_16_BIG_ENDIAN,
 	WATCH_REPRESENTATION_SIGNED_DEC_32_LITTLE_ENDIAN,
 	WATCH_REPRESENTATION_SIGNED_DEC_32_BIG_ENDIAN,
+    WATCH_REPRESENTATION_FP_16_Q88_LITTLE_ENDIAN,
 	WATCH_REPRESENTATION_BIN,
 	WATCH_REPRESENTATION_TEXT,
 	//	WATCH_REPRESENTATION_OCT,		// not used

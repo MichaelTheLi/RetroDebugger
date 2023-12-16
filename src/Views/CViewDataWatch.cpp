@@ -133,6 +133,11 @@ void CViewDataWatch::RenderImGui()
 								| dataAdapter->AdapterReadByteModulus(watch->address + 2) << 16
 								| dataAdapter->AdapterReadByteModulus(watch->address + 3) << 24;
 						break;
+
+                    case WATCH_REPRESENTATION_FP_16_Q88_LITTLE_ENDIAN:
+                        value =   dataAdapter->AdapterReadByteModulus(watch->address    )
+                                  | dataAdapter->AdapterReadByteModulus(watch->address + 1) << 8;
+                        break;
 					case WATCH_REPRESENTATION_HEX_32_BIG_ENDIAN:
 					case WATCH_REPRESENTATION_UNSIGNED_DEC_32_BIG_ENDIAN:
 					case WATCH_REPRESENTATION_SIGNED_DEC_32_BIG_ENDIAN:
@@ -183,6 +188,12 @@ void CViewDataWatch::RenderImGui()
 					case WATCH_REPRESENTATION_SIGNED_DEC_16_BIG_ENDIAN:
 						ImGui::Text("%d", (i16)value);
 						break;
+					case WATCH_REPRESENTATION_FP_16_Q88_LITTLE_ENDIAN:
+                        // TODO Would be good to have another combo or two for:
+                        //      1. singed/unsigned
+                        //      2. data length
+						ImGui::Text("%4.5lf", ((float) value) / 256);
+						break;
 					case WATCH_REPRESENTATION_SIGNED_DEC_32_LITTLE_ENDIAN:
 					case WATCH_REPRESENTATION_SIGNED_DEC_32_BIG_ENDIAN:
 						ImGui::Text("%d", (i32)value);
@@ -197,7 +208,7 @@ void CViewDataWatch::RenderImGui()
 			ImGui::TableNextColumn();
 			
 			sprintf(buf, "##DataWatchCombo%x", watch);
-			ImGui::Combo(buf, &(watch->representation), "Hex 8-bits\0Hex 16-bits LE\0Hex 16-bits BE\0Hex 32-bits LE\0Hex 32-bits BE\0Unsigned Dec 8-bits\0Unsigned Dec 16-bits LE\0Unsigned Dec 16-bits BE\0Unsigned Dec 32-bits LE\0Unsigned Dec 32-bits BE\0Signed Dec 8-bits\0Signed Dec 16-bits LE\0Signed Dec 16-bits BE\0Signed Dec 32-bits LE\0Signed Dec 32-bits BE\0Binary\0\0"); //Text\0\0");
+			ImGui::Combo(buf, &(watch->representation), "Hex 8-bits\0Hex 16-bits LE\0Hex 16-bits BE\0Hex 32-bits LE\0Hex 32-bits BE\0Unsigned Dec 8-bits\0Unsigned Dec 16-bits LE\0Unsigned Dec 16-bits BE\0Unsigned Dec 32-bits LE\0Unsigned Dec 32-bits BE\0Signed Dec 8-bits\0Signed Dec 16-bits LE\0Signed Dec 16-bits BE\0Signed Dec 32-bits LE\0Signed Dec 32-bits BE\0FP Q8.8 16-bits LE\0Binary\0\0"); //Text\0\0");
 
 			ImGui::TableNextColumn();
 			sprintf(buf, "X##%x", watch);
