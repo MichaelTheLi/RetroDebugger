@@ -135,6 +135,14 @@ void CViewDataWatch::RenderImGui()
 						break;
 
                     case WATCH_REPRESENTATION_FP_16_Q88_LITTLE_ENDIAN:
+                    case WATCH_REPRESENTATION_FP_16_Q79_LITTLE_ENDIAN:
+                    case WATCH_REPRESENTATION_FP_16_Q610_LITTLE_ENDIAN:
+                    case WATCH_REPRESENTATION_FP_16_Q511_LITTLE_ENDIAN:
+                    case WATCH_REPRESENTATION_FP_16_Q412_LITTLE_ENDIAN:
+                    case WATCH_REPRESENTATION_FP_16_Q313_LITTLE_ENDIAN:
+                    case WATCH_REPRESENTATION_FP_16_Q214_LITTLE_ENDIAN:
+                    case WATCH_REPRESENTATION_FP_16_Q115_LITTLE_ENDIAN:
+                    case WATCH_REPRESENTATION_FP_16_Q016_LITTLE_ENDIAN:
                         value =   dataAdapter->AdapterReadByteModulus(watch->address    )
                                   | dataAdapter->AdapterReadByteModulus(watch->address + 1) << 8;
                         break;
@@ -189,11 +197,35 @@ void CViewDataWatch::RenderImGui()
 						ImGui::Text("%d", (i16)value);
 						break;
 					case WATCH_REPRESENTATION_FP_16_Q88_LITTLE_ENDIAN:
+                        ImGui::Text("%4.5lf", ((float) value) / 256);
+                        break;
+                    case WATCH_REPRESENTATION_FP_16_Q79_LITTLE_ENDIAN:
+                        ImGui::Text("%4.5lf", ((float) value) / 512);
+                        break;
+                    case WATCH_REPRESENTATION_FP_16_Q610_LITTLE_ENDIAN:
+                        ImGui::Text("%4.5lf", ((float) value) / 1024);
+                        break;
+                    case WATCH_REPRESENTATION_FP_16_Q511_LITTLE_ENDIAN:
+                        ImGui::Text("%4.5lf", ((float) value) / 2048);
+                        break;
+                    case WATCH_REPRESENTATION_FP_16_Q412_LITTLE_ENDIAN:
+                        ImGui::Text("%4.5lf", ((float) value) / 4096);
+                        break;
+                    case WATCH_REPRESENTATION_FP_16_Q313_LITTLE_ENDIAN:
+                        ImGui::Text("%4.5lf", ((float) value) / 8192);
+                        break;
+                    case WATCH_REPRESENTATION_FP_16_Q214_LITTLE_ENDIAN:
+                        ImGui::Text("%4.5lf", ((float) value) / 16384);
+                        break;
+                    case WATCH_REPRESENTATION_FP_16_Q115_LITTLE_ENDIAN:
+                        ImGui::Text("%4.5lf", ((float) value) / 32768);
+                        break;
+                    case WATCH_REPRESENTATION_FP_16_Q016_LITTLE_ENDIAN:
                         // TODO Would be good to have another combo or two for:
                         //      1. singed/unsigned
                         //      2. data length
-						ImGui::Text("%4.5lf", ((float) value) / 256);
-						break;
+                        ImGui::Text("%4.5lf", ((float) value) / 65536);
+                        break;
 					case WATCH_REPRESENTATION_SIGNED_DEC_32_LITTLE_ENDIAN:
 					case WATCH_REPRESENTATION_SIGNED_DEC_32_BIG_ENDIAN:
 						ImGui::Text("%d", (i32)value);
@@ -208,7 +240,7 @@ void CViewDataWatch::RenderImGui()
 			ImGui::TableNextColumn();
 			
 			sprintf(buf, "##DataWatchCombo%x", watch);
-			ImGui::Combo(buf, &(watch->representation), "Hex 8-bits\0Hex 16-bits LE\0Hex 16-bits BE\0Hex 32-bits LE\0Hex 32-bits BE\0Unsigned Dec 8-bits\0Unsigned Dec 16-bits LE\0Unsigned Dec 16-bits BE\0Unsigned Dec 32-bits LE\0Unsigned Dec 32-bits BE\0Signed Dec 8-bits\0Signed Dec 16-bits LE\0Signed Dec 16-bits BE\0Signed Dec 32-bits LE\0Signed Dec 32-bits BE\0FP Q8.8 16-bits LE\0Binary\0\0"); //Text\0\0");
+			ImGui::Combo(buf, &(watch->representation), "Hex 8-bits\0Hex 16-bits LE\0Hex 16-bits BE\0Hex 32-bits LE\0Hex 32-bits BE\0Unsigned Dec 8-bits\0Unsigned Dec 16-bits LE\0Unsigned Dec 16-bits BE\0Unsigned Dec 32-bits LE\0Unsigned Dec 32-bits BE\0Signed Dec 8-bits\0Signed Dec 16-bits LE\0Signed Dec 16-bits BE\0Signed Dec 32-bits LE\0Signed Dec 32-bits BE\0FP Q8.8 16-bits LE\0FP Q7.9 16-bits LE\0FP Q6.10 16-bits LE\0FP Q5.11 16-bits LE\0FP Q4.12 16-bits LE\0FP Q3.13 16-bits LE\0FP Q2.14 16-bits LE\0FP Q1.15 16-bits LE\0FP Q0.16 16-bits LE\0Binary\0\0"); //Text\0\0");
 
 			ImGui::TableNextColumn();
 			sprintf(buf, "X##%x", watch);

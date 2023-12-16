@@ -100,7 +100,34 @@ CDebugSymbolsDataWatch::~CDebugSymbolsDataWatch()
 	STRFREE(watchName);
 }
 
-static const char *representationNames[] = { "hex8", "hex16le", "hex16be", "hex32le", "hex32be", "udec8", "udec16le", "udec16be", "udec32le", "udec32be", "sdec8", "sdec16le", "sdec16be", "sdec32le", "sdec32be", "fp16q88", "bin", "text" };
+static const char *representationNames[] = {
+		"hex8",
+		"hex16le",
+		"hex16be",
+		"hex32le",
+		"hex32be",
+		"udec8",
+		"udec16le",
+		"udec16be",
+		"udec32le",
+		"udec32be",
+		"sdec8",
+		"sdec16le",
+		"sdec16be",
+		"sdec32le",
+		"sdec32be",
+		"fp16q88",
+		"fp16q79",
+		"fp16q610",
+		"fp16q511",
+		"fp16q412",
+		"fp16q313",
+		"fp16q214",
+		"fp16q115",
+		"fp16q016",
+		"bin",
+		"text"
+};
 
 const char *CDebugSymbolsDataWatch::RepresentationToStr(int representation)
 {

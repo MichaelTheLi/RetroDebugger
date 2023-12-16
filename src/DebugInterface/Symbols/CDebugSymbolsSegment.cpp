@@ -437,11 +437,27 @@ void CDebugSymbolsSegment::AddWatch(int address, int numberOfValues, CSlrString 
 		{
 			representation = WATCH_REPRESENTATION_HEX_32_LITTLE_ENDIAN;
 		}
-		else if (strRepresentation->CompareWith("fp16q88"))
-		{
-			representation = WATCH_REPRESENTATION_FP_16_Q88_LITTLE_ENDIAN;
-		}
-		
+
+        if (strRepresentation->CompareWith("fp16q88")) {
+            representation = WATCH_REPRESENTATION_FP_16_Q88_LITTLE_ENDIAN;
+        } else if (strRepresentation->CompareWith("fp16q79")) {
+            representation = WATCH_REPRESENTATION_FP_16_Q79_LITTLE_ENDIAN;
+        } else if (strRepresentation->CompareWith("fp16q610")) {
+            representation = WATCH_REPRESENTATION_FP_16_Q610_LITTLE_ENDIAN;
+        } else if (strRepresentation->CompareWith("fp16q511")) {
+            representation = WATCH_REPRESENTATION_FP_16_Q511_LITTLE_ENDIAN;
+        } else if (strRepresentation->CompareWith("fp16q412")) {
+            representation = WATCH_REPRESENTATION_FP_16_Q412_LITTLE_ENDIAN;
+        } else if (strRepresentation->CompareWith("fp16q313")) {
+            representation = WATCH_REPRESENTATION_FP_16_Q313_LITTLE_ENDIAN;
+        } else if (strRepresentation->CompareWith("fp16q214")) {
+            representation = WATCH_REPRESENTATION_FP_16_Q214_LITTLE_ENDIAN;
+        } else if (strRepresentation->CompareWith("fp16q115")) {
+            representation = WATCH_REPRESENTATION_FP_16_Q115_LITTLE_ENDIAN;
+        } else if (strRepresentation->CompareWith("fp16q016")) {
+            representation = WATCH_REPRESENTATION_FP_16_Q016_LITTLE_ENDIAN;
+        }
+
 		if (strRepresentation->CompareWith("dec")
 			|| strRepresentation->CompareWith("dec8")
 			|| strRepresentation->CompareWith("unsigned")
